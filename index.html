@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Radial CMF Interaction System</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app">
+        <div id="project-canvas"></div>
+        <div id="vignette-overlay"></div>
+        <div id="noise-layer"></div>
+        
+        <div id="center-trigger"></div>
+        
+        <div id="floating-action-system" class="floating-container">
+            <button id="main-action-pill" class="action-pill">
+                <span class="plus-icon">+</span> Add File
+            </button>
+            <div id="action-options" class="action-options">
+                <button class="option-btn" id="upload-btn">Upload Source</button>
+                <button class="option-btn" id="library-btn">Use Library</button>
+            </div>
+        </div>
+
+        <div class="overlay" id="global-overlay"></div>
+
+        <!-- Corner Nodes (Layer 1) -->
+        <div id="top-left" class="corner-node" data-corner="TL">
+            <div class="base-layer">
+                <svg viewBox="0 0 100 100" class="quarter-circle">
+                    <path class="base-path" d="M 0 0 L 100 0 A 100 100 0 0 1 0 100 Z" />
+                </svg>
+                <div class="color-info">
+                    <span class="pantone-code"></span>
+                    <span class="hex-value"></span>
+                </div>
+            </div>
+        </div>
+
+        <div id="top-right" class="corner-node" data-corner="TR">
+            <div class="base-layer">
+                <svg viewBox="0 0 100 100" class="quarter-circle">
+                    <path class="base-path" d="M 100 0 L 0 0 A 100 100 0 0 0 100 100 Z" />
+                </svg>
+                <div class="color-info">
+                    <span class="pantone-code"></span>
+                    <span class="hex-value"></span>
+                </div>
+            </div>
+        </div>
+
+        <div id="bottom-left" class="corner-node" data-corner="BL">
+            <div class="base-layer">
+                <svg viewBox="0 0 100 100" class="quarter-circle">
+                    <path class="base-path" d="M 0 100 L 0 0 A 100 100 0 0 1 100 100 Z" />
+                </svg>
+                <div class="color-info">
+                    <span class="pantone-code"></span>
+                    <span class="hex-value"></span>
+                </div>
+            </div>
+        </div>
+
+        <div id="bottom-right" class="corner-node" data-corner="BR">
+            <div class="base-layer">
+                <svg viewBox="0 0 100 100" class="quarter-circle">
+                    <path class="base-path" d="M 100 100 L 100 0 A 100 100 0 0 0 0 100 Z" />
+                </svg>
+                <div class="color-info">
+                    <span class="pantone-code"></span>
+                    <span class="hex-value"></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Radial Menu System -->
+        <div id="radial-menu-overlay" class="radial-menu-container"></div>
+
+        <!-- Library Modal (Layer 5) -->
+        <div id="library-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>External Library</h2>
+                    <button class="close-btn" id="close-modal">&times;</button>
+                </div>
+                <div class="library-grid" id="library-grid"></div>
+            </div>
+        </div>
+
+        <!-- Hidden File Input -->
+        <input type="file" id="file-picker" style="display: none;" accept="image/*">
+    </div>
+    <!-- Three.js for Real-time CMF Rendering -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
